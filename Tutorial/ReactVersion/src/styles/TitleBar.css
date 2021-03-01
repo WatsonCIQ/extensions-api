@@ -1,0 +1,191 @@
+:root {
+	/* Color Variables:  Use these variables to make broad-sweeping changes to the colors throughout the application. */
+	--core-primary: #22262f;
+	--core-primary-1: #171a20;
+	--core-primary-2: #373b43;
+	--core-primary-3: #3d4455;
+	--core-primary-4: #5b606f;
+	--core-primary-5: #acb2c0;
+
+	--accent-primary: #42a5ba;
+	--accent-primary-1: #36788b;
+
+	--accent-positive: #2cc13f;
+	--accent-positive-1: #27ae38;
+
+	--accent-aware: #f5a623;
+	--accent-aware-1: #dc951f;
+
+	--accent-negative: #f26666;
+	--accent-negative-1: #da5c5c;
+
+	--scrollbar-color: white;
+	/* Font Variables:  Use these variables to make changes to the global font styles. */
+	--font-family: "OpenSans", sans-serif;
+
+	--font-color: white;
+	--font-color-1: var(--core-primary-5);
+	--font-color-2: black;
+	--font-shadow: rgba(0, 0, 0, 0.5);
+
+	--font-weight: 600;
+	--font-weight-1: 400;
+	--font-weight-2: bold;
+
+	--font-size: 12px;
+
+  	/* Window Title bar */
+	--titleBar-height: 25px;
+	--titleBar-font-size: var(--font-size);
+	--titleBar-icon-font-size: 8px;
+	--titlebar-icon-color: var(--font-color);
+	--titleBar-font-weight: var(--font-weight);
+	--titleBar-active-font-color: var(--font-color); /* Not in use by default */
+	--titleBar-inactive-font-color: var(--font-color-1);
+	--titleBar-linker-font-color: var(--font-color-2);
+	--titleBar-linker-font-color-blur: var(--font-color);
+
+	--titleBar-background-inactive-color: var(--core-primary);
+	--titleBar-background-active-color: var(--core-primary);
+	--titlebar-tab-active-font-color: var(--font-color);
+	--titlebar-tab-inactive-font-color: var(--font-color-1);
+	--titlebar-tab-hover-font-color: var(--font-color);
+	--titlebar-tab-icon-font-color: var(--accent-primary);
+	--titlebar-tab-hover-background-color: var(--core-primary-2);
+	--titlebar-tab-active-background-color: var(--core-primary-3);
+	--titlebar-tab-inactive-background-color: var(--core-primary);
+	--titlebar-tab-ghost-background-color: var(--accent-primary-1);
+	--titlebar-tab-ghost-border-color: var(--accent-primary);
+
+	--titlebar-icon-color: var(--font-color-1);
+	--titlebar-icon-hover-color: var(--font-color);
+	--titleBar-button-hover-active-color: var(--core-primary-4);
+	--titleBar-button-hover-inactive-color: var(--core-primary-3);
+	--titleBar-button-highlight-active-color: var(--accent-primary);
+	--titleBar-button-highlight-inactive-color: var(--accent-primary-1);
+	--titleBar-button-hover-negative-color: var(--accent-negative);
+	--titleBar-button-hover-linker-group: var(--core-primary-3);
+
+}
+
+body {
+    font-weight: var(--font-weight);
+    font-family: var(--font-family);
+    /* color: var(--font-color); */
+    font-size: var(--font-size);
+    /* background: #3d4455; */
+}
+
+#FSBLHeader{
+  background: var(--core-primary-1);
+  margin:0;
+  padding:0;
+  height:20px;
+  display: flex;
+}
+
+.fsbl-linker {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    transition: background 0.3s ease;
+    position: relative;
+    width: 12px;
+    border-radius: 20px;
+    margin-right: 2px;
+}
+
+.fsbl-icon {
+  position: relative;
+  /* color: #1e2c4e; */
+  /* font-size: 7px; */
+  width: 16px;
+  padding: 0px 2px;
+  /* height: calc(100% + 1px); */
+  margin: 2px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  transition: background 0.2s ease;
+  /* cursor: pointer; */
+  box-sizing: content-box !important;
+  background-color: red;
+}
+/* .fsbl-header {
+  font-family: var(--font-family);
+  font-size: var(--titleBar-font-size);
+  font-weight: var(--titleBar-font-weight);
+  text-align: center;
+  display: flex;
+  height: var(--titleBar-height);
+  position: fixed;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: center;
+  background: var(--titleBar-background-inactive-color);
+  width: 100%;
+  left: 0;
+  z-index: 2147483639;
+  top: 0;
+  color: var(--titleBar-inactive-font-color);
+} */
+
+.linkerSection {
+  display: flex;
+  height: 100%;
+}
+
+/* .channels{
+
+} */
+
+select {
+  appearance: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  color: white;
+}
+.channel-option {
+  background-color: var(--titleBar-background-active-color);
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+}
+
+.linker-section {
+  cursor: pointer;
+}
+
+svg {
+  height:15px;
+  width: 100%;
+  fill:white;
+}
+
+svg > g {
+  fill: white;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.channel-color {
+  width:10px;
+  height:10px;
+}
+
+#channels {
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black;
+  padding-left:2px;
+}

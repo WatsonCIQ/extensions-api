@@ -3,6 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 import DataTableComponent from './DataTableComponent';
 import LoadingIndicatorComponent from './LoadingIndicatorComponent';
 import SheetListComponent from './SheetListComponent';
+import { fdc3 } from "@chartiq/fpe-router";
+import TitleBar from './TitleBar';
 import './styles/Main.css';
 
 // Declare this so our linter knows that tableau is a global object
@@ -19,6 +21,10 @@ function MainComponent() {
   const [dashboardName, setDashboardName] = useState('');
 
   let unregisterEventFn = undefined;
+
+  useEffect(() => {
+    fdc3.joinChannel("group1")
+  }, [])
 
   useEffect(() => {
     tableau.extensions.initializeAsync().then(() => {
@@ -117,6 +123,7 @@ function MainComponent() {
 
   let output =
     <div>
+      <TitleBar></TitleBar>
       <div className='summary_header'>
         <h4>
           Marks for <span className='sheet_name'>{selectedSheet}</span>

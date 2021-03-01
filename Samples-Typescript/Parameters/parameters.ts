@@ -1,7 +1,9 @@
 import {
+    MarksSelectedEvent,
     Parameter,
     ParameterChangedEvent,
-    ParameterDomainRestriction
+    ParameterDomainRestriction,
+    Worksheet
 } from '@tableau/extensions-api-types';
 
 import { DataType } from '@tableau/extensions-api-types/ExternalContract/Namespaces/Tableau';
@@ -129,4 +131,29 @@ import { DataType } from '@tableau/extensions-api-types/ExternalContract/Namespa
 
     console.log('Initializing Parameters extension.');
     await new Parameters($).initialize();
+
+
+    // Add an event listener for the selection changed event on this sheet.
+    // Assigning the event to a variable just to make the example fit on the page here.
+    const markSelection = tableau.TableauEventType.MarkSelectionChanged;
+    //
+    let prms = document.getElementById("parameters");
+
+    tableau.extensions.dashboardContent.dashboard.worksheets.forEach(worksheet => {
+        worksheet.addEventListener(markSelection, async function (selectionEvent: MarksSelectedEvent) {
+            // When the selection changes, reload the data
+            prms.append("TTTTTEEEESSSTT");
+            // eslint-disable-next-line
+            // let a = await selectionEvent.getMarksAsync()
+            let a = await selectionEvent.worksheet.getSelectedMarksAsync();
+            // getSelectedMarksAsync()
+            prms.append(JSON.stringify(a.data));
+
+        });
+    })
+
+    tableau.extensions.dashboardContent.dashboard.worksheets.forEach(worksheet => {
+        prms.append(worksheet.name);
+    })
+
 })();
