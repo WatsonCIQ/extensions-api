@@ -6,15 +6,23 @@ import { fdc3 } from "@chartiq/fpe-router";
 function DataTableComponent(props) {
   const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
 
-    const addFDC3Button = (ticker) => <button onClick={() => {
+    const BroadcastButton = ({ ticker }) => <button onClick={() => {
       fdc3.broadcast({
         type: 'fdc3.instrument',
         id: {
           ticker
         }
       })
-    }}>💠</button>
+    }}>💱</button>
 
+    const IntentButton = ({ ticker }) => <button onClick={() => {
+      fdc3.raiseIntent("ViewChart", {
+        type: 'fdc3.instrument',
+        id: {
+          ticker
+        }
+      })
+    }}>📈</button>
 
 
     if (rowIndex === 0) {
@@ -29,8 +37,13 @@ function DataTableComponent(props) {
     } else {
       return (<div className={'cell ' + (rowIndex % 2 === 1 ? 'odd' : 'even')} key={key} style={style} >
         {props.rows[rowIndex - 1][columnIndex]}
-        {addFDC3Button(props.rows[rowIndex - 1][columnIndex])}
-        {/* {props.rows[0][columnIndex].toLowerCase() === "ticker" && addFDC3Button(props.rows[rowIndex - 1][columnIndex])} */}
+        {}
+        {props.headers[columnIndex] === "Ticker" && <>
+          <BroadcastButton ticker={props.rows[rowIndex - 1][columnIndex]}></BroadcastButton>
+
+          <IntentButton ticker={props.rows[rowIndex - 1][columnIndex]}></IntentButton>
+        </>
+        }
       </div>);
     }
   };

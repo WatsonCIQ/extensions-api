@@ -5,10 +5,14 @@ import LoadingIndicatorComponent from './LoadingIndicatorComponent';
 import SheetListComponent from './SheetListComponent';
 import { fdc3 } from "@chartiq/fpe-router";
 import TitleBar from './TitleBar';
+import ContextPicker from './ContextPicker';
 import './styles/Main.css';
 
 // Declare this so our linter knows that tableau is a global object
 /* global tableau */
+
+/* global fdc3 */
+window.fdc3 = fdc3
 
 function MainComponent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,9 +26,9 @@ function MainComponent() {
 
   let unregisterEventFn = undefined;
 
-  useEffect(() => {
-    fdc3.joinChannel("group1")
-  }, [])
+  // useEffect(() => {
+  //   fdc3.joinChannel("group1")
+  // }, [])
 
   useEffect(() => {
     tableau.extensions.initializeAsync().then(() => {
@@ -123,7 +127,7 @@ function MainComponent() {
 
   let output =
     <div>
-      <TitleBar></TitleBar>
+      <TitleBar ></TitleBar>
       <div className='summary_header'>
         <h4>
           Marks for <span className='sheet_name'>{selectedSheet}</span>
@@ -131,6 +135,7 @@ function MainComponent() {
           <Button variant='link' onClick={onResetFilters} disabled={filteredFields.length === 0}><img className='icon' src='./undo-arrow.svg' alt='' /></Button>
         </h4>
       </div>
+      <ContextPicker />
       {mainContent}
     </div>
 

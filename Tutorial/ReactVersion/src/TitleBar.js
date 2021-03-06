@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { fdc3 } from "@chartiq/fpe-router";
 import "./styles/TitleBar.css"
+/* global fdc3 */
 
 function Linker(props) {
   return (
@@ -47,13 +47,14 @@ export default function TitleBar() {
   useEffect(() => {
     fdc3.getSystemChannels().then(channels => {
       setChannels(channels)
-      console.log(channels[1].displayMetadata.color)
     })
 
   }, [])
 
   const setSelectBackgroundColor = (channelId) => {
     const selectedChannel = channels.find(channels => channelId === channels.id);
+
+    fdc3.joinChannel(channelId)
 
     const selectedChannelColor = selectedChannel.displayMetadata?.color;
 
